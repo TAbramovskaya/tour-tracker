@@ -25,3 +25,6 @@ ENV/
 
 # Data files
 *.tmp
+
+# Privat
+config/sorces.py
