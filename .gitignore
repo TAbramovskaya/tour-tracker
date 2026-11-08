@@ -27,5 +27,5 @@ ENV/
 *.tmp
 
 # Privat
-config/sorces.py
+config/sources.py
 storage/events.json
