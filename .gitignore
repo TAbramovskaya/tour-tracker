@@ -29,5 +29,5 @@ logs/
 
 # Privat
 config/sources.py
-storage/events.json
-storage/events.db
+storage/*.json
+storage/*.db
