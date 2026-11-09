@@ -66,11 +66,15 @@ def insert_events(events):
 
 
 def query_recorded_events():
-    with get_connection() as conn:
-        cursor = conn.execute("SELECT * FROM events")
+    try:
+        with get_connection() as conn:
+            cursor = conn.execute("SELECT * FROM events")
 
-        return cursor.fetchall()
+            return cursor.fetchall()
 
+    except sqlite3.OperationalError:
+        logger.exception("Failed to query recorded events")
+        raise
 
 
 def find_new_events(events):
@@ -92,11 +96,13 @@ def find_new_events(events):
 
 
 def update_events(events):
-    new_events = get_new_events(events)
+    new_events = find_new_events(events)
 
     if not new_events:
+        logger.info("No new events found")
         return []
 
+    logger.info("Updating events")
     insert_events(new_events)
 
     return new_events
