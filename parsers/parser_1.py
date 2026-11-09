@@ -22,15 +22,13 @@ def parse(source):
         location_element = event.select_one("li.eventlist-meta-address")
         map_element = event.select_one("a.eventlist-meta-address-maplink")
 
-        date = date_element.get("datetime", "") if date_element else ""
-        title = title_element.get_text(strip=True) if title_element else ""
-        location = (
-            location_element.get_text(strip=True).removesuffix("(map)").strip()
-            if location_element else "")
-        url = urljoin(url_base, title_element.get("href", "")) if location_element else ""
+        date = date_element.get("datetime")
+        title = title_element.get_text(strip=True)
+        location = location_element.get_text(strip=True).removesuffix("(map)").strip()
+        url = urljoin(url_base, title_element.get("href"))
 
         if map_element:
-            map_url = map_element.get("href", "")
+            map_url = map_element.get("href")
             map_location = map_url.split("?q=", 1)[1] if "?q=" in map_url else ""
 
             if map_location:

@@ -25,10 +25,10 @@ def parse(source):
         title_element = event.select_one("a.underline-hover")
         location_element = event.select_one("div.post-location")
 
-        date = date_element.get("datetime", "") if date_element else ""
-        title = title_element.get_text(strip=True) if title_element else ""
-        location = location_element.get_text(strip=True) if location_element else ""
-        url = title_element.get("href", "") if location_element else ""
+        date = date_element.get("datetime")
+        title = title_element.get_text(strip=True)
+        location = location_element.get_text(strip=True)
+        url = title_element.get("href")
 
         event_data = Event(
             artist=artist,
