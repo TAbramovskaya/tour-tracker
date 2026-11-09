@@ -25,13 +25,12 @@ def create_table():
         with get_connection() as conn:
             conn.execute("""
                 CREATE TABLE IF NOT EXISTS events (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
                     artist TEXT NOT NULL,
                     date TEXT NOT NULL,
                     title TEXT NOT NULL,
                     location TEXT NOT NULL,
                     url TEXT NOT NULL,
-                    UNIQUE (artist, date, title, location)
+                    PRIMARY KEY (artist, date, title, location)
                 )
             """)
         logger.info("Events table is ready")
@@ -73,8 +72,9 @@ def query_recorded_events():
         return cursor.fetchall()
 
 
-def get_new_events(events):
-    existing_events = set(e[1:5] for e in query_recorded_events())
+
+def find_new_events(events):
+    existing_events = set(e[:4] for e in query_recorded_events())
 
     new_events = []
     for event in events:
