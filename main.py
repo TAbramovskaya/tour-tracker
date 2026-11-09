@@ -8,9 +8,6 @@ logger = get_logger(__name__)
 
 
 def main():
-
-    logger.info("Event update process started")
-
     upcoming_events = fetch_events()
     save_events(upcoming_events)
 
@@ -25,4 +22,5 @@ def main():
 
 
 if __name__ == '__main__':
+    logger.info("Event update process started")
     main()
