@@ -31,7 +31,7 @@ All script logs are saved in the `logs/tour-tracker.log`.
 
 The `config` directory contains `sources_dummy.py`. It is an example configuration with one source.
 
-To add your own sources, rename `sources_dummy.py` to `sources.py` and follow the existing source dictionary structure. Each source requires: artists' name; a unique parser name; url_base — the base URL of the website; url_suffix — the remaining part of the URL.
+To add your own sources, rename `sources_dummy.py` to `sources.py` and follow the existing source dictionary structure. Each source requires: artist's name, a unique parser name, the base URL of the website, url suffix — the remaining part of the URL.
 
 The URL is split into two parts because event links in the HTML response are often relative paths. This makes it easier to build full URLs for event pages and gives you more flexibility when parsing different parts of the website.
 
@@ -51,7 +51,7 @@ You can use your browser's Inspect tool to find the CSS selectors you need.
 
 ### Example source and parser
 
-`parcer_3.py` is written for the Rotterdam Philharmonic Orchestra website. It collects concerts featuring Rachmaninoff's music from the [concert agenda](https://www.rotterdamsphilharmonisch.nl/agenda?refinementList%5Bfilter_composer%5D%5B0%5D=Rachmaninov).
+`parcer_3.py` is written for the Rotterdam Philharmonic Orchestra website. It collects concerts featuring Rachmaninoff's music from the [concert agenda](https://www.rotterdamsphilharmonisch.nl/agenda).
 
 ### Configure Telegram
 
@@ -63,15 +63,15 @@ To send notifications, you need a Telegram bot.
 
 For more information, see the [Telegram Bot API documentation](https://core.telegram.org/bots/api).
 
-The repository contains an example environment file named `.env_dummy`.
-
-Add your bot token and chat ID to this file, using the variable names expected by the project, and rename it to `.env`.
+The repository contains an example environment file named `.env_dummy`. Add your bot token and chat ID to this file, and rename it to `.env`.
 
 ### Run the initial setup
 
 Before starting the daily checks, run `initial_load.py`. This will collect the currently announced events and populate the SQLite database.
 
-You only need to do this once when setting up the project.
+You only need to do this once when setting up the project. 
+
+You can then run `heartbeat.py` to check that Telegram notifications are working.
 
 ### Automation
 
@@ -82,11 +82,11 @@ I use `cron` to run the project scripts automatically:
 
 You can use other task schedulers depending on your operating system.
 
-Happy concert hunting! May there always be more great music and live events to look forward to!
+Happy concert hunting! 
 
-## Tech stack
+### Tech stack
 
-- **Python** — main programming language
-- **SQLite** — stores all collected events
-- **Telegram Bot API** — sends notifications
-- **cron** — automates scheduled runs
+- Python — main programming language
+- SQLite — stores all collected events
+- Telegram Bot API — sends notifications
+- `cron` — automates scheduled runs
