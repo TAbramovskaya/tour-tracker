@@ -18,6 +18,7 @@ ENV/
 *.ipr
 
 # Logs
+logs/
 *.log
 
 # Local configuration
@@ -29,3 +30,4 @@ ENV/
 # Privat
 config/sources.py
 storage/events.json
+storage/events.db
