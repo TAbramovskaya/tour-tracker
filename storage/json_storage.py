@@ -6,7 +6,8 @@ logger = get_logger(__name__)
 
 
 STORAGE_DIR = Path(__file__).parent
-FILENAME = "events.json"
+FILENAME = "upcoming_events.json"
+
 
 def save_events(events):
     filepath = STORAGE_DIR / FILENAME
@@ -19,7 +20,7 @@ def save_events(events):
                 ensure_ascii=False,
                 indent=4
             )
-        logger.info("Saved %d events to %s", len(events), filepath)
+        logger.info("Saved %d events to %s", len(events), FILENAME)
 
     except (OSError, TypeError, ValueError):
         logger.exception("Failed to save events to %s", filepath)
