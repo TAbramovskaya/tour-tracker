@@ -23,7 +23,7 @@ def get_event(artist: str, date: str, title: str, location: str, url: str) -> Ev
 def get_heartbeat_event():
     return Event(
         artist="Pi",
-        date=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        date=datetime.datetime.now().strftime("%Y-%m-%d"),
         title="Heartbeat",
         location="Home",
         url="https://www.google.com",
