@@ -1,27 +1,22 @@
-from config.sources import SOURCES
-from parsers.loader import get_parser
+from services.event_service import fetch_events
 from storage.json_storage import save_events
 from storage.db_storage import create_table, insert_events
+from models.event import get_heartbeat_event
+
 from logger import get_logger
 
 logger = get_logger(__name__)
 
 
 def initial_load():
-    all_events = []
+    events = fetch_events()
 
-    logger.info("Parsing sources for events")
-    for source in SOURCES:
-        parser = get_parser(source)
-        events = parser(source)
-        all_events.extend(events)
+    save_events(events)
 
-    logger.info("Found %d events", len(all_events))
-
-    save_events(all_events)
+    events.append(get_heartbeat_event())
 
     create_table()
-    insert_events(all_events)
+    insert_events(events)
 
 
 if __name__ == "__main__":
