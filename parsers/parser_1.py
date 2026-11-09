@@ -14,7 +14,7 @@ def parse(source):
     soup = BeautifulSoup(response.content, 'html.parser')
     event_elements = soup.select("article.eventlist-event--upcoming")
 
-    events_list = []
+    events = []
 
     for event in event_elements:
         date_element = event.select_one("time.event-date")
@@ -44,6 +44,6 @@ def parse(source):
             url=url,
         )
 
-        events_list.append(event_data)
+        events.append(event_data)
 
-    return events_list
+    return events
