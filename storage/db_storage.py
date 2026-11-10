@@ -106,3 +106,19 @@ def update_events(events):
     insert_events(new_events)
 
     return new_events
+
+
+def update_heartbeat_url(url):
+    try:
+        with get_connection() as conn:
+            conn.execute("""
+                UPDATE events
+                SET url = ?
+                WHERE artist = 'Pi'
+                """,
+                (url,)
+            )
+
+    except sqlite3.OperationalError:
+        logger.exception("Failed to update heartbeat event")
+        raise

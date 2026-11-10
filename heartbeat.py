@@ -16,7 +16,7 @@ def heartbeat():
 
     except sqlite3.OperationalError:
         logger.exception("Failed to query recorded events")
-        result = ("Some", "thing", "went", "wrong", ".")
+        result = ("Something", "went", "wrong", ".", "https://someting_went.wrong")
 
     heartbeat_event = get_event(*result)
 
