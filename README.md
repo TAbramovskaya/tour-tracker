@@ -23,7 +23,7 @@ The project has three main scripts:
 
 - **`heartbeat.py`** — Retrieves the special heartbeat event from the database and sends it to Telegram. This helps check that the main services are working, even when no new concerts are announced.
 
-All script logs are saved in the `logs/tour-tracker.log`.
+All script logs are saved in the `logs` directory.
 
 ## Getting started
 
