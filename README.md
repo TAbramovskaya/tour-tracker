@@ -29,9 +29,9 @@ All script logs are saved in the `logs` directory.
 
 ### Configure event sources
 
-The `config` directory contains `sources_dummy.py`. It is an example configuration with one source.
+The `config` directory contains [`sources_dummy.py`](https://github.com/TAbramovskaya/tour-tracker/blob/main/config/sources_dummy.py). It is an example configuration with one source.
 
-To add your own sources, rename `sources_dummy.py` to `sources.py` and follow the existing source dictionary structure. Each source requires: artist's name, a unique parser name, the base URL of the website, url suffix — the remaining part of the URL.
+To add your own sources, rename `sources_dummy.py` to `sources.py` and follow the existing source dictionary structure. Each source requires: artist's name, a unique parser name, the base URL of the website, URL suffix — the remaining part of the URL.
 
 The URL is split into two parts because event links in the HTML response are often relative paths. This makes it easier to build full URLs for event pages and gives you more flexibility when parsing different parts of the website.
 
@@ -51,7 +51,7 @@ You can use your browser's Inspect tool to find the CSS selectors you need.
 
 ### Example source and parser
 
-`parcer_3.py` is written for the Rotterdam Philharmonic Orchestra website. It collects concerts featuring Rachmaninoff's music from the [concert agenda](https://www.rotterdamsphilharmonisch.nl/agenda).
+[`parcer_3.py`](https://github.com/TAbramovskaya/tour-tracker/blob/main/parsers/parser_3.py) is written for the Rotterdam Philharmonic Orchestra website. It collects concerts featuring Rachmaninoff's music from the [concert agenda](https://www.rotterdamsphilharmonisch.nl/agenda).
 
 ### Configure Telegram
 
@@ -63,7 +63,7 @@ To send notifications, you need a Telegram bot.
 
 For more information, see the [Telegram Bot API documentation](https://core.telegram.org/bots/api).
 
-The repository contains an example environment file named `.env_dummy`. Add your bot token and chat ID to this file, and rename it to `.env`.
+The repository contains an example environment file named [`.env_dummy`](https://github.com/TAbramovskaya/tour-tracker/blob/main/.env_dummy). Add your bot token and chat ID to this file, and rename it to `.env`.
 
 ### Run the initial setup
 
