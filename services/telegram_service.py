@@ -2,6 +2,7 @@ import os
 import requests
 from pathlib import Path
 from dotenv import load_dotenv
+from html import escape
 from logger import get_logger
 
 ENV_FILE = Path(__file__).parent.parent / ".env"
@@ -48,10 +49,10 @@ def message_compose(event):
     return f"""
 <b>New Event</b>
 
-<b>Artist:</b> {event.artist}
-<b>Date:</b> {event.date}
-<b>Title:</b> {event.title}
-<b>Location:</b> {event.location}
+<b>Artist:</b> {escape(str(event.artist))}
+<b>Date:</b> {escape(str(event.date))}
+<b>Title:</b> {escape(str(event.title))}
+<b>Location:</b> {escape(str(event.location))}
 
-<a href="{event.url}">Event link</a>
+<a href="{escape(str(event.url))}">Event link</a>
 """
