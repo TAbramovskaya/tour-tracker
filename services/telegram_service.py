@@ -14,10 +14,10 @@ CHAT_ID = os.getenv("CHAT_ID")
 logger = get_logger(__name__)
 
 
-def send_notification(event):
+def send_notification(event, header):
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
 
-    message = message_compose(event)
+    message = message_compose(event, header=header)
     payload = {
         "chat_id": CHAT_ID,
         "text": message,
@@ -48,9 +48,9 @@ def send_notification(event):
         return False
 
 
-def message_compose(event):
+def message_compose(event, header="Unknown Notification"):
     return f"""
-<b>New Event</b>
+<b>{header}</b>
 
 <b>Artist:</b> {escape(str(event.artist))}
 <b>Date:</b> {escape(str(event.date))}

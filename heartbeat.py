@@ -20,7 +20,7 @@ def heartbeat():
 
     heartbeat_event = get_event(*result)
 
-    send_notification(heartbeat_event)
+    send_notification(heartbeat_event, header="Heartbeat")
 
 
 if __name__ == '__main__':
