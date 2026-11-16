@@ -1,5 +1,6 @@
 import sqlite3
 from pathlib import Path
+from models.event import get_system_event
 from logger import get_logger
 
 STORAGE_DIR = Path(__file__).parent
@@ -96,29 +97,21 @@ def find_new_events(events):
 
 
 def update_events(events):
-    new_events = find_new_events(events)
-
-    if not new_events:
+    """
+    Returns an empty tuple if the update completes successfully, otherwise a tuple containing a system event.
+    """
+    if not events:
         logger.info("No new events found")
-        return []
+        return ()
 
     logger.info("Updating events")
-    insert_events(new_events)
+    inserted = insert_events(events)
+    ignored = len(events) - inserted
 
-    return new_events
+    if ignored:
+        return get_system_event(
+            title=f"Not all new events were saved to the database: {inserted} inserted, {ignored} ignored",
+            location="update_events"
+        )
 
-
-def update_heartbeat_url(url):
-    try:
-        with get_connection() as conn:
-            conn.execute("""
-                UPDATE events
-                SET url = ?
-                WHERE artist = 'Pi'
-                """,
-                (url,)
-            )
-
-    except sqlite3.OperationalError:
-        logger.exception("Failed to update heartbeat event")
-        raise
+    return ()
