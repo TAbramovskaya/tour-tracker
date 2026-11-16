@@ -33,6 +33,7 @@ def send_notification(event):
         result = response.json()
         if result.get("ok"):
             logger.info("Notification sent")
+            return True
         else:
             logger.error(
                 "Notification failed. Error code: %s. Description: %s\nMessage:\n%s",
@@ -40,9 +41,11 @@ def send_notification(event):
                 result.get("description"),
                 message
             )
+            return False
 
     except (requests.RequestException, ValueError) as e:
         logger.error("Notification failed: %s\nMessage:\n%s", str(e), message)
+        return False
 
 
 def message_compose(event):
