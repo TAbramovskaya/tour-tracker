@@ -10,7 +10,6 @@ logger = get_logger(__name__)
 
 def initial_load():
     events = fetch_events()
-
     save_events(events)
 
     events.append(get_heartbeat_event())

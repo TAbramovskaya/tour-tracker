@@ -36,7 +36,7 @@ def send_notification(event):
             return True
         else:
             logger.error(
-                "Notification failed. Error code: %s. Description: %s\nMessage:\n%s",
+                "Notification failed. Error code: %s\nDescription: %s\nMessage:\n%s",
                 result.get("error_code"),
                 result.get("description"),
                 message

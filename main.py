@@ -16,6 +16,7 @@ def main():
     if new_events:
         logger.info("Sending new event notifications")
         count = len(new_events)
+
         for i, event in enumerate(new_events, start=1):
             logger.info("Sending %d of %d", i, count)
             send_notification(event)
