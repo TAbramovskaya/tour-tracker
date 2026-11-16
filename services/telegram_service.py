@@ -34,7 +34,11 @@ def send_notification(event):
             logger.info("Notification sent")
         else:
             logger.error(
-                "Notification failed. Error code %s", result.get("error_code"))
+                "Notification failed. Error code: %s. Description: %s\nMessage:\n%s",
+                result.get("error_code"),
+                result.get("description"),
+                message
+            )
 
     except (requests.RequestException, ValueError) as e:
         logger.error("Notification failed: %s\nMessage:\n%s", str(e), message)
