@@ -36,8 +36,8 @@ def send_notification(event):
             logger.error(
                 "Notification failed. Error code %s", result.get("error_code"))
 
-    except (requests.HTTPError, requests.RequestException, ValueError) as e:
-        logger.error("Notification failed: %s", str(e))
+    except (requests.RequestException, ValueError) as e:
+        logger.error("Notification failed: %s\nMessage:\n%s", str(e), message)
 
 
 def message_compose(event):
