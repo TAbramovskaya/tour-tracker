@@ -24,9 +24,9 @@ def main():
             logger.info("Sending %d of %d", i, count)
 
             header = "New Event" if event.artist != SYSTEM_AUTHOR else "Parser Failure Warning"
-            sent_status = send_notification(event, header=header)
+            send_status = send_notification(event, header=header)
 
-            if sent_status:
+            if send_status:
                 if event.artist != SYSTEM_AUTHOR:
                     events_to_update.append(event)
 
